@@ -235,5 +235,3 @@ for i, t in enumerate(noise_scheduler.timesteps):
     # Update sample with step
     sample = noise_scheduler.step(residual,t,sample).prev_sample
 
-# Save model images
-sample.save('images/samp_loop.jpg')
