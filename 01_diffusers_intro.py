@@ -1,6 +1,3 @@
-#https://colab.research.google.com/github/huggingface/diffusion-models-class/blob/main/unit1/01_introduction_to_diffusers.ipynb#scrollTo=-yX-MZhSsxwp
-
-
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -174,7 +171,6 @@ noise_scheduler = DDPMScheduler(
 
 # Training loop
 optimizer = torch.optim.AdamW(model.parameters(), lr=4e-4)
-
 losses = []
 
 for epoch in range(30):
@@ -217,3 +213,27 @@ plt.savefig('images/training_progress.jpg')
 
 # Uncomment to instead load the model I trained earlier:
 # model = butterfly_pipeline.unet
+
+
+# Generate images
+from diffusers import DDPMPipeline
+image_pipe = DDPMPipeline(unet=model, scheduler=noise_scheduler)
+pipeline_output = image_pipe()
+pipeline_output.images[0].save('images/pipeline_output.jpg')
+
+# Save the pipeline
+image_pipe.save_pretrained('my_pipeline')
+
+# Write sampling loop
+
+sample = torch.randn(8,3,32,32).to(device)
+
+for i, t in enumerate(noise_scheduler.timesteps):
+    with torch.no_grad():
+        residual = model(sample, t).sample
+
+    # Update sample with step
+    sample = noise_scheduler.step(residual,t,sample).prev_sample
+
+# Save model images
+sample.save('images/samp_loop.jpg')
