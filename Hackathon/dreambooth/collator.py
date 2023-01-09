@@ -1,4 +1,10 @@
 import torch
+from transformers import CLIPTokenizer
+
+model_id = "CompVis/stable-diffusion-v1-4"
+tokenizer = CLIPTokenizer.from_pretrained(
+        model_id,
+        subfolder="tokenizer")
 
 def collate_fn(examples):
     input_ids = [example["instance_prompt_ids"] for example in examples]

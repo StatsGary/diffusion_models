@@ -137,3 +137,4 @@ my-finetuned-model/model_index.json
 my-finetuned-model/
 Hackathon/images/
 Hackathon/norweigen-fjords-dreambooth/
+Hackathon/dreambooth_train.py
