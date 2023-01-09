@@ -1,3 +1,10 @@
+""" 
+Name:       dreambooth_train.py
+Author:     Gary Hutson
+Date:       09/01/2023
+Usage:      python dreambooth_train.py
+"""
+
 from dreambooth.dataloader import pull_dataset_from_hf_hub, DreamBoothDataset
 from dreambooth.image import image_grid
 from dreambooth.collator import collate_fn
