@@ -1,0 +1,7 @@
+train_params:
+  stable_diffusion_backbone: CompVis/stable-diffusion-v1-4
+  feature_extractor: openai/clip-vit-base-patch32
+  hugging_face_image_store: hf_data_location
+  learning_rate: 2e-06
+  max_train_steps: 400
+  resolution: 512
